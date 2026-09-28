@@ -33,7 +33,7 @@ python python_subscriber.py
 
 You should see temperature and humidity readings arrive every 2 seconds.
 
-## Step 3 — LED control (5 min)
+## Step 3 — LED control
 
 While the simulation is running, send control commands:
 
