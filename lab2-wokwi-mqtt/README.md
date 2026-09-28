@@ -11,7 +11,7 @@
 | HiveMQ public broker | broker.hivemq.com:1883 | Free |
 | Python 3 + paho-mqtt | `pip install -r requirements.txt` | Free |
 
-## Step 1 — Set up the Wokwi circuit
+## Step 1 — Set up the Wokwi circuit (10 min)
 
 1. Go to https://wokwi.com → **New Project** → **ESP32**
 2. In the component library (left panel), search **DHT22** and drag it onto the canvas
@@ -24,7 +24,7 @@
 
 The Serial Monitor in Wokwi will show MQTT connection messages and published readings.
 
-## Step 2 — Verify from your laptop
+## Step 2 — Verify from your laptop (5 min)
 
 ```bash
 pip install -r requirements.txt
@@ -33,7 +33,7 @@ python python_subscriber.py
 
 You should see temperature and humidity readings arrive every 2 seconds.
 
-## Step 3 — LED control
+## Step 3 — LED control (5 min)
 
 While the simulation is running, send control commands:
 
@@ -55,4 +55,3 @@ If you prefer a GUI, open https://www.hivemq.com/demos/websocket-client/ and sub
 | `firmware/firmware.ino` | Arduino/ESP32 firmware for Wokwi |
 | `firmware/wokwi.toml` | Library dependencies for Wokwi |
 | `python_subscriber.py` | Python script to receive readings + send LED commands |
-
