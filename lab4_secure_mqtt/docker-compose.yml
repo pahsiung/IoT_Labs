@@ -1,0 +1,37 @@
+# Lab 4 — Local Mosquitto broker with TLS (alternative to HiveMQ Cloud)
+#
+# This lets you run the full TLS lab without a cloud account.
+# Steps:
+#   1. Install Docker Desktop
+#   2. Run:  docker compose up -d
+#   3. Update secure_publish.py / secure_subscribe.py:
+#        BROKER   = "localhost"
+#        PORT     = 8883
+#        USERNAME = "iot_device"
+#        PASSWORD = "iotpassword"
+#   4. Run:  bash generate_certs.sh  (creates mosquitto/certs/*)
+#   5. Run:  python secure_publish.py  and  python secure_subscribe.py
+#
+# Note: generate_certs.sh creates self-signed certs for localhost.
+# In secure_publish.py / secure_subscribe.py, also add:
+#   client.tls_set(ca_certs="mosquitto/certs/ca.crt", tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+version: "3.8"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto_tls
+    ports:
+      - "1883:1883"    # plain MQTT (for testing)
+      - "8883:8883"    # TLS MQTT
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/certs:/mosquitto/certs
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    restart: unless-stopped
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
