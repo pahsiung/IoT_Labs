@@ -1,0 +1,2 @@
+# Python publisher only — Node-RED itself is installed separately (see README)
+paho-mqtt>=2.0.0
