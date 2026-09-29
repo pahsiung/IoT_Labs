@@ -29,7 +29,11 @@
     "broker": "broker_hivemq",
     "x": 120,
     "y": 100,
-    "wires": [["json_parse"]]
+    "wires": [
+      [
+        "json_parse"
+      ]
+    ]
   },
   {
     "id": "json_parse",
@@ -41,7 +45,12 @@
     "pretty": false,
     "x": 300,
     "y": 100,
-    "wires": [["debug_raw", "alert_fn"]]
+    "wires": [
+      [
+        "debug_raw",
+        "alert_fn"
+      ]
+    ]
   },
   {
     "id": "debug_raw",
@@ -70,7 +79,50 @@
     "libs": [],
     "x": 480,
     "y": 120,
-    "wires": [["gauge_temp", "chart_temp"], ["debug_alert", "mqtt_alert"]]
+    "wires": [
+      [
+        "extract_temp"
+      ],
+      [
+        "debug_alert",
+        "mqtt_alert"
+      ]
+    ]
+  },
+  {
+    "id": "extract_temp",
+    "type": "change",
+    "z": "tab_lab3",
+    "name": "Extract temp_c",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "temperature",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.temp_c",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 620,
+    "y": 120,
+    "wires": [
+      [
+        "gauge_temp",
+        "chart_temp"
+      ]
+    ]
   },
   {
     "id": "gauge_temp",
@@ -84,13 +136,17 @@
     "gtype": "gage",
     "title": "Temperature",
     "label": "°C",
-    "format": "{{value.temp_c}}",
+    "format": "{{value}}",
     "min": 0,
     "max": 50,
-    "colors": ["#00b500", "#e6e600", "#ca3838"],
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
     "seg1": 25,
     "seg2": 35,
-    "x": 700,
+    "x": 820,
     "y": 100,
     "wires": []
   },
@@ -117,10 +173,14 @@
     "removeOlderUnit": "3600",
     "cutout": 0,
     "useOneColor": false,
-    "colors": ["#1f77b4"],
-    "x": 700,
+    "colors": [
+      "#1f77b4"
+    ],
+    "x": 820,
     "y": 140,
-    "wires": [[]]
+    "wires": [
+      []
+    ]
   },
   {
     "id": "debug_alert",

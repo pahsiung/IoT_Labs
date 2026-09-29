@@ -51,7 +51,7 @@ MQTT-in (iot/lab/sensor1)
     └─► JSON parse
             ├─► Debug (raw readings)
             └─► Alert Logic (Function node)
-                    ├─► [normal] Gauge + Chart → Dashboard at /ui
+                    ├─► [normal] Change (payload = temp_c) ─► Gauge + Chart → Dashboard at /ui
                     └─► [alert]  Debug + MQTT-out (iot/alerts)
 ```
 
